@@ -3,6 +3,7 @@ version: '3'
 services:  
   flask:
     image: webapp-flask
+    container_name: demo_flask
     build:
       context: .
       dockerfile: Dockerfile-flask
@@ -12,6 +13,7 @@ services:
       - demo-network
   nginx:
     image: webapp-nginx
+    container_name: demo_nginx
     build:
       context: .
       dockerfile: Dockerfile-nginx
