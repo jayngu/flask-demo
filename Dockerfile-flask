@@ -23,8 +23,12 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # We copy the rest of the codebase into the image
-COPY . .
+COPY app.py .
+COPY uwsgi.ini .
+
+#RUN touch uwsgi.log
 
 # Finally, we run uWSGI with the ini file we
 # created earlier
+#CMD [ "uwsgi", "--ini", "uwsgi.ini", "--logger", "logfile=uwsgi.log,maxsize=2000000" ]
 CMD [ "uwsgi", "--ini", "uwsgi.ini" ]
