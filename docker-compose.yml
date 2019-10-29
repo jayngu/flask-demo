@@ -1,0 +1,26 @@
+# docker-compose.yml
+version: '3'
+services:  
+  flask:
+    image: webapp-flask
+    build:
+      context: .
+      dockerfile: Dockerfile-flask
+    volumes:
+      - "./:/app"
+    networks:
+      - demo-network
+  nginx:
+    image: webapp-nginx
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    ports:
+      - 8500:80
+    networks:
+      - demo-network
+    depends_on:
+      - flask
+
+networks:
+  demo-network:
